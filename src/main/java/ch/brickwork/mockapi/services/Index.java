@@ -1,7 +1,6 @@
 package ch.brickwork.mockapi.services;
 
 import ch.brickwork.mockapi.Main;
-
 import javax.print.attribute.standard.Media;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -27,7 +26,7 @@ public class Index {
         tables += "</ul>";
 
         String uploadForm = "     <h1>File Upload</h1>\n" + "\n"
-            + "            <form action=\"http://localhost:8089/myapp/upload/\" method=\"post\" enctype=\"multipart/form-data\">\n" + "\n"
+            + "            <form action=\"" + Main.BASE_URI + "upload/\" method=\"post\" enctype=\"multipart/form-data\">\n" + "\n"
             + "                <p>Select a file : <input type=\"file\" name=\"file\" size=\"45\" /></p>\n"
             + "                <input type=\"submit\" value=\"Upload CSV\" />\n" + "\n" + "            </form>";
 
