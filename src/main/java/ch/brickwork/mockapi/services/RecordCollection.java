@@ -16,15 +16,19 @@ import ch.brickwork.mockapi.util.RecordUtils;
  */
 @Path("tables")
 public class RecordCollection {
+
     @Path("{table}")
     @GET
     @Produces("application/json")
     public Response getRecords(@PathParam("table") String table)
     {
         if (!Main.db.existsTableOrView(table)) {
-           return Response.status(Response.Status.NOT_FOUND).build();
+            return Response.status(Response.Status.NOT_FOUND).build();
         }
 
-        return Response.ok(RecordUtils.toJSON(Main.db.getAllRecordsFromTableOrView(table, null, null)), MediaType.APPLICATION_JSON).build();
+        return Response.ok(RecordUtils.toJSON(Main.db.getAllRecordsFromTableOrView(table, null, null)), MediaType.APPLICATION_JSON)
+            .header("Access-Control-Allow-Origin", "*")
+            .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+            .build();
     }
 }

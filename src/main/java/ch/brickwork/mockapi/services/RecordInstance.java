@@ -25,6 +25,9 @@ public class RecordInstance {
 
         List<String> colNames = Main.db.getTableOrViewColumnNames(table);
         String str = RecordUtils.toJSON(Main.db.prepare("SELECT * FROM " + table + " WHERE " + colNames.get(0) + " = '" + id + "'"));
-        return Response.ok(str, MediaType.APPLICATION_JSON).build();
+        return Response.ok(str, MediaType.APPLICATION_JSON)
+            .header("Access-Control-Allow-Origin", "*")
+            .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+            .build();
     }
 }
